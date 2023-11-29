@@ -1,6 +1,5 @@
-#include <iostream>
+#include "main.h"
 
-int main(int argc, char **argv) {
-    std::cout << "Hello, world!" << std::endl;
-    return 0;
+int main() {
+    avc15::day1();
 }
