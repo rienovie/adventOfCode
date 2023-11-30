@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(SOURCES
     main.cpp
     old/2015.cpp
+    util.cpp
 )
 
 add_executable(avc ${SOURCES})
