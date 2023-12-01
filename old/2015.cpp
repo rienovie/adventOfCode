@@ -35,21 +35,57 @@ namespace avc15 {
 
     //Challenge is calc total area of wrapping paper needed
     //2*l*w + 2*w*h + 2*h*l plus add the smallest side
+    //Second star is sum of two smallest sides x2 plus volume of box (w*h*l)
 
     void day2(){
-        struct boxDims { int width, height, length;};
+        struct boxDims {
+            int width, height, length;
+            void clearValues(){
+                width = 0;
+                height = 0;
+                length = 0;
+            }
+            int getValueByIndex(int index){
+                switch (index){
+                    case 0:
+                        return this->width;
+                    case 1:
+                        return this->height;
+                    case 2:
+                        return this->length;
+                    default:
+                        std::cout << "valueByIndex not valid\n";
+                        return 0;
+                }
+            }
+            int wrapSize(){
+                int output = 0;
+                int largest = 0;
+                for(int i = 0;i<3;i++){
+                    if(getValueByIndex(i) > getValueByIndex(largest)) {largest = i;}
+                }
+                for(int i = 0;i<3;i++){
+                    if(i == largest) continue;
+                    output += (getValueByIndex(i) * 2);
+                }
 
-        int finalOutput;
+                return output;
+            }
+        };
+
+        int wrappingPaper = 0;
         std::vector<std::string> lines = util::getInput("../old/inputs/2015_2_input");
-        //dims are 0 width, 1 height, 2 length
-        int currentDim;
+        int currentDim; //dims are 0 width, 1 height, 2 length
         std::string tempStr;
-
         boxDims currentBox;
+        boxDims currentBoxArea;
+        int ribbon = 0;
 
         //for each line (box)
         for(std::string line : lines){
-            currentDim = 0;
+            currentBox.clearValues();
+            currentBoxArea.clearValues();
+            currentDim = 0; //used for box dims and to determine smallest value
             tempStr.clear();
 
             //set the dimentions of the box
@@ -62,19 +98,48 @@ namespace avc15 {
                         case 1:
                             currentBox.height = std::stoi(tempStr);
                             break;
-                        case 2:
-                            currentBox.length = std::stoi(tempStr);
+                        default:
+                            util::qPrint("Error on line dimention set");
                             break;
                     }
+
                     tempStr.clear();
                     currentDim++;
                 }
-                else tempStr.append("%c",element);
+                else tempStr.push_back(element);
             }
 
+            currentBox.length = std::stoi(tempStr);
+
+            //check if not valid
+            if(currentBox.width <= 0) {util::qPrint("Line invalid"); continue;}
+
+            currentDim = 0; //will be set to which is the lowest (smallest)
+            //l*w , w*h , h*l
+
+            currentBoxArea.width = (currentBox.width * currentBox.length);
+
+            currentBoxArea.height = (currentBox.height * currentBox.width);
+            if(currentBoxArea.height < currentBoxArea.width) {currentDim = 1;}
+            currentBoxArea.length = (currentBox.length * currentBox.height);
+            if(currentBoxArea.length < currentBoxArea.getValueByIndex(currentDim)) {currentDim = 2;}
+
+            //add to totals
+            wrappingPaper += (currentBoxArea.width * 2);
+            wrappingPaper += (currentBoxArea.height * 2);
+            wrappingPaper += (currentBoxArea.length * 2);
+            wrappingPaper += (currentBoxArea.getValueByIndex(currentDim));
+
+            ribbon += (currentBox.width * currentBox.height * currentBox.length); //bow
+            ribbon += currentBox.wrapSize(); //ribbon wrap
 
 
-        }
+        } //end of individual box
+
+        util::qPrint(wrappingPaper);
+        util::qPrint("Wrapping Paper");
+        util::qPrint(ribbon);
+        util::qPrint("Ribbon");
 
 
     }
