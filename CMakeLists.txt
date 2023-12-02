@@ -7,13 +7,15 @@ set(SOURCES
     main.cpp
     old/2015.cpp
     util.cpp
-    2023.cpp
+    2023/day1.cpp
+    2023/day2.cpp
 )
 
 add_executable(avc ${SOURCES})
 
 target_include_directories(avc PUBLIC
     old/
+    2023/
 )
 
 install(TARGETS avc RUNTIME DESTINATION bin)

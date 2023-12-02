@@ -2,4 +2,5 @@
 
 #include <iostream>
 #include "old/2015.h"
-#include "2023.h"
+#include "2023/day1.h"
+#include "2023/day2.h"
