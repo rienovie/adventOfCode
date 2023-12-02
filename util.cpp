@@ -28,6 +28,8 @@ namespace util {
     template void qPrint<int>(int);
     template void qPrint<float>(float);
     template void qPrint<char const*>(char const*);
+    template void qPrint<std::string>(std::string);
+    template void qPrint<char>(char);
 
 
 }

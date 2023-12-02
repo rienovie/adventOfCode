@@ -1,5 +1,5 @@
 #include "main.h"
 
 int main() {
-    avc15::day2();
+    avc23::day1();
 }

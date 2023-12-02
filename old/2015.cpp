@@ -32,7 +32,6 @@ namespace avc15 {
 
     }
 
-
     //Challenge is calc total area of wrapping paper needed
     //2*l*w + 2*w*h + 2*h*l plus add the smallest side
     //Second star is sum of two smallest sides x2 plus volume of box (w*h*l)

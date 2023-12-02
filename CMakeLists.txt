@@ -7,6 +7,7 @@ set(SOURCES
     main.cpp
     old/2015.cpp
     util.cpp
+    2023.cpp
 )
 
 add_executable(avc ${SOURCES})
