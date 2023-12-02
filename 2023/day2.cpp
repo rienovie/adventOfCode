@@ -30,29 +30,20 @@ public:
         switch (color){
             case red:
                 if(valueToSet > highestRed_p) { highestRed_p = valueToSet; }
-                if(valueToSet > redMax_p) {
-                    red_p = valueToSet;
-                    return false;
-                }
-                else red_p = valueToSet;
+                red_p = valueToSet;
+                if(red_p > redMax_p) { return false; }
                 return true;
 
             case green:
                 if(valueToSet > highestGreen_p) { highestGreen_p = valueToSet; }
-                if(valueToSet > greenMax_p) {
-                    green_p = valueToSet;
-                    return false;
-                }
-                else green_p = valueToSet;
+                green_p = valueToSet;
+                if(valueToSet > greenMax_p) { return false; }
                 return true;
 
             case blue:
                 if(valueToSet > highestBlue_p) { highestBlue_p = valueToSet; }
-                if(valueToSet > blueMax_p) {
-                    blue_p = valueToSet;
-                    return false;
-                }
-                else blue_p = valueToSet;
+                blue_p = valueToSet;
+                if(valueToSet > blueMax_p) { return false; }
                 return true;
 
             default:
