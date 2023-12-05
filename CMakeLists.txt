@@ -12,6 +12,7 @@ set(SOURCES
     2023/day1.cpp
     2023/day2.cpp
     2023/day3.cpp
+    2023/day4.cpp
 )
 
 add_executable(avc ${SOURCES})

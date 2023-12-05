@@ -1,6 +1,6 @@
 #include "day3.h"
 
-std::vector<std::string> input = util::getInput("../inputs/23_3_input");
+std::vector<std::string> inputD3 = util::getInput("../inputs/23_3_input");
 
 //scope feels bad, but am struggling today
 char charToCheck;
@@ -35,8 +35,8 @@ void day3(){
     int gearRatioSum = 0;
 
     //for each line of input
-    for (int lineIndex = 0; lineIndex<input.size(); lineIndex++){
-        std::string line = input[lineIndex];
+    for (int lineIndex = 0; lineIndex<inputD3.size(); lineIndex++){
+        std::string line = inputD3[lineIndex];
 
         //first pass to find symbol locations
         for (int lineElement = 0; lineElement<line.length();lineElement++){
@@ -101,8 +101,8 @@ void day3(){
 }
 
 char getElement(int2D loc) {
-    if(loc.x > input.size() || loc.x < 0 || loc.y > input[loc.x].length() || loc.y < 0) {return '.';}
-    return input[loc.x][loc.y];
+    if(loc.x > inputD3.size() || loc.x < 0 || loc.y > inputD3[loc.x].length() || loc.y < 0) {return '.';}
+    return inputD3[loc.x][loc.y];
 }
 
 foundNumber getFullNumber(int2D initialLocation) {

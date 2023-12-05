@@ -5,3 +5,4 @@
 #include "2023/day1.h"
 #include "2023/day2.h"
 #include "2023/day3.h"
+#include "2023/day4.h"

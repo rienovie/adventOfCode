@@ -56,6 +56,7 @@ namespace util {
     template void qPrint<std::string>(std::string, std::string);
     template void qPrint<char const*, int>(char const*, int);
     template void qPrint<int>(int, int);
+    template void qPrint<char const*, std::string>(char const*, std::string);
 
 
 }
