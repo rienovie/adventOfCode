@@ -47,6 +47,7 @@ namespace util {
         std::cout << output0 << " " << output1 << "\n";
     }
 
+    //this is ugly, will look up if there's something better
     template void qPrint<int>(int);
     template void qPrint<float>(float);
     template void qPrint<char const*>(char const*);
@@ -57,6 +58,11 @@ namespace util {
     template void qPrint<char const*, int>(char const*, int);
     template void qPrint<int>(int, int);
     template void qPrint<char const*, std::string>(char const*, std::string);
+    template void qPrint<char const*, unsigned long>(char const*, unsigned long);
+    template void qPrint<ulong>(ulong);
+    template void qPrint<uint>(uint);
+    template void qPrint<long>(long);
+    template void qPrint<long long>(long long);
 
 
 }
