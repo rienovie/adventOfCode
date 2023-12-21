@@ -143,4 +143,65 @@ namespace avc15 {
 
     }
 
+    void day3() {
+
+        std::vector<std::string> vInput = util::getInput("../old/inputs/2015_3_input");
+
+        std::vector<int2d> vHousesDelivered;
+        int2d santaLocation, roboLocation;
+        int2d* currentTurnLocation;
+        bool bCurrentExists = false;
+        bool bSantaTurn = false; // will set to santa on first turn
+
+        //add first location
+        vHousesDelivered.push_back( santaLocation );
+
+
+        for(std::string sLine : vInput){
+            for(char cElement : sLine){
+                bCurrentExists = false;
+                bSantaTurn = !bSantaTurn;
+                currentTurnLocation = (bSantaTurn ? &santaLocation : &roboLocation);
+
+                switch (cElement){
+
+                    case '>':
+                        currentTurnLocation->x += 1;
+                        break;
+                    case '<':
+                        currentTurnLocation->x -= 1;
+                        break;
+                    case '^':
+                        currentTurnLocation->y += 1;
+                        break;
+                    case 'v':
+                        currentTurnLocation->y -= 1;
+                        break;
+
+                    default:
+                        util::qPrint("default called on switch");
+                        continue;
+                        break;
+                }
+
+
+                for(int2d gridValue : vHousesDelivered ){
+                    if( currentTurnLocation->x == gridValue.x && currentTurnLocation->y == gridValue.y) {
+                        bCurrentExists = true;
+                        break;
+                    }
+                }
+
+                if(!bCurrentExists) {
+                    vHousesDelivered.push_back( *currentTurnLocation );
+                }
+
+            }
+        }
+
+        util::qPrint( vHousesDelivered.size());
+
+    }
+
+
 }
