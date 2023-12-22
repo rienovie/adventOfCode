@@ -11,4 +11,6 @@ namespace avc15 {
     void day1();
     void day2();
     void day3();
+    void day5_part1();
+    void day5_part2();
 }

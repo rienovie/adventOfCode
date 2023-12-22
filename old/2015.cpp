@@ -132,14 +132,12 @@ namespace avc15 {
             ribbon += (currentBox.width * currentBox.height * currentBox.length); //bow
             ribbon += currentBox.wrapSize(); //ribbon wrap
 
-
         } //end of individual box
 
         util::qPrint(wrappingPaper);
         util::qPrint("Wrapping Paper");
         util::qPrint(ribbon);
         util::qPrint("Ribbon");
-
 
     }
 
@@ -155,7 +153,6 @@ namespace avc15 {
 
         //add first location
         vHousesDelivered.push_back( santaLocation );
-
 
         for(std::string sLine : vInput){
             for(char cElement : sLine){
@@ -203,5 +200,94 @@ namespace avc15 {
 
     }
 
+    void day5_part1() {
+        std::vector<std::string> vInput = util::getInput("../old/inputs/2015_5_input");
+        int iVowelCount = 0, iNiceList = 0;
+        bool bDoubleLetters = false;
+        bool bNotContain = true;
+
+        for(std::string sLine : vInput) {
+            iVowelCount = 0;
+            bDoubleLetters = false;
+            bNotContain = true;
+            int iLineLength = sLine.length();
+
+            //for each char in line
+            for(int i = 0;i<iLineLength;i++) {
+                if(iVowelCount < 3
+                    &&(sLine[i] == 'a'
+                    || sLine[i] == 'e'
+                    || sLine[i] == 'i'
+                    || sLine[i] == 'o'
+                    || sLine[i] == 'u'
+                )){
+                        iVowelCount++;
+
+                }
+                if((!bDoubleLetters) && i > 0 && sLine[i] == sLine[i-1]) { bDoubleLetters = true; }
+                if(i > 0
+                    &&((sLine[i-1] == 'a' && sLine[i] == 'b')
+                    || (sLine[i-1] == 'c' && sLine[i] == 'd')
+                    || (sLine[i-1] == 'p' && sLine[i] == 'q')
+                    || (sLine[i-1] == 'x' && sLine[i] == 'y')
+                )){
+                    bNotContain = false;
+                    break;
+                }
+            }
+
+            //util::qPrint("iVowelCount:",iVowelCount,"double:",bDoubleLetters,"notContain:",bNotContain);
+
+            if(iVowelCount > 2 && bDoubleLetters && bNotContain) { iNiceList++; }
+
+        }
+
+        util::qPrint("Part one:",iNiceList);
+    }
+
+    void day5_part2() {
+        std::vector<std::string> vInput = util::getInput("../old/inputs/2015_5_input");
+        int iNiceList = 0, iLineLength = 0;
+        bool bHopDouble = false;
+        bool bDoubleDouble = false;
+        std::string aLineGroups[15];
+
+        for(std::string sLine : vInput) {
+            iLineLength = sLine.length();
+            bHopDouble = false;
+            bDoubleDouble = false;
+
+            for(auto& str : aLineGroups){
+                str.clear();
+            }
+
+            //for each char in line
+            for(int i = 0; i < iLineLength; i++ ){
+                if(!bHopDouble && i < iLineLength - 2 && sLine[i] == sLine[i+2] ) { bHopDouble = true; }
+                if(i < iLineLength-1 ) {
+                    aLineGroups[i] += sLine[i];
+                    aLineGroups[i] += sLine[i+1];
+                }
+            }
+
+            //for each aLineGroup compare to the others that are beyond overlaping values
+            for(int i = 0; i < 15; i++ ) {
+                for(int j = 0; j < 15; j++ ) {
+                    //util::qPrint(aLineGroups[i],aLineGroups[j]);
+                    if(( j < i-1 || j > i+1 ) && aLineGroups[i] == aLineGroups[j] ) {
+                        bDoubleDouble = true;
+                        break;
+                    }
+                }
+                if(bDoubleDouble) { break; }
+            }
+
+            if(bHopDouble && bDoubleDouble) { iNiceList++; }
+
+        }
+
+        util::qPrint("Part two:", iNiceList);
+
+    }
 
 }
