@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "../util.h"
 
 struct int2d { int x = 0, y = 0; };
 

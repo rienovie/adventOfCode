@@ -3,3 +3,5 @@ build/
 AVC.kdev4
 old/inputs/
 inputs/
+.cache/
+.vscode/
