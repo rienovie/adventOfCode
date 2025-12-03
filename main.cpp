@@ -1,8 +1,8 @@
 #include "main.h"
-#include "2024/day2.hpp"
+#include "2025/day1.hpp"
 
 int main() {
 
-    day2::main();
+    day1::main();
 
 }

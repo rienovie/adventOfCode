@@ -9,7 +9,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fsanitize=address")
 
-set(SOURCES main.cpp CppUtil/util.cpp 2024/day2.cpp)
+set(SOURCES main.cpp CppUtil/util.cpp 2025/day1.cpp)
 
 add_executable(avc ${SOURCES})
 
